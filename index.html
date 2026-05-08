@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vellum — A small, beautiful thing for your AI workspace.</title>
+  <meta name="description" content="Thirty-eight refined themes for Claude and ChatGPT. Made by hand, by humans, for the hours you spend in conversation with machines.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+
+    :root {
+      --bg: #0a0908;
+      --paper: #111110;
+      --ink: #f5f1eb;
+      --ink-soft: #8b8478;
+      --ink-faint: #4a463e;
+      --rule: #1f1d18;
+      --gold: #d4a574;
+      --accent: #d4c5a9;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Fraunces', Georgia, serif;
+      font-feature-settings: 'ss01', 'ss02';
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* Subtle paper grain */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(212,165,116,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(212,165,116,0.02) 0%, transparent 50%);
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      padding: 28px 0 24px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .masthead-brand {
+      font-style: italic;
+      font-weight: 500;
+      font-size: 30px;
+      letter-spacing: -1.2px;
+    }
+
+    .masthead-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      color: var(--ink-soft);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      gap: 32px;
+      align-items: baseline;
+    }
+
+    .masthead-meta a {
+      color: var(--ink);
+    }
+    .masthead-meta a.cta {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .masthead-meta a.cta:hover { opacity: 0.85; }
+
+    /* Issue number bar */
+    .issue {
+      padding: 8px 0;
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 90px 0 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-deck {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(64px, 9vw, 128px);
+      font-weight: 300;
+      line-height: 0.92;
+      letter-spacing: -3.5px;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .hero-byline {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 12px;
+    }
+
+    .hero-lede {
+      font-size: 21px;
+      line-height: 1.5;
+      letter-spacing: -0.3px;
+      max-width: 460px;
+      margin-bottom: 40px;
+    }
+
+    .hero-lede::first-letter {
+      font-size: 64px;
+      float: left;
+      line-height: 0.9;
+      padding: 8px 12px 0 0;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-family: 'Fraunces', serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s;
+      letter-spacing: -0.1px;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(26,22,18,0.18);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+    }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); }
+
+    /* ── FROM THE EDITORS ── */
+    .editors {
+      padding: 64px 0 56px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding-top: 6px;
+    }
+
+    .editors-text {
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .editors-text p { margin-bottom: 18px; }
+    .editors-text p:last-child { margin-bottom: 0; }
+    .editors-text em { font-style: italic; color: var(--gold); font-weight: 500; }
+
+    /* ── COLLECTION ── */
+    .collection {
+      padding: 64px 0 80px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .collection-head {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      margin-bottom: 56px;
+      align-items: baseline;
+    }
+
+    .collection-head h2 {
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .collection-head h2 em {
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .collection-head .lede {
+      font-size: 17px;
+      color: var(--ink-soft);
+      max-width: 460px;
+      align-self: end;
+    }
+
+    .specimens {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .specimen {
+      aspect-ratio: 1;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.2, 0.6, 0.3, 1);
+    }
+    .specimen:hover { transform: scale(0.97); }
+
+    .specimen-label {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      right: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.95);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .specimen.light .specimen-label { color: rgba(0,0,0,0.7); text-shadow: none; }
+
+    .specimen-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      opacity: 0.7;
+    }
+
+    .specimen-pro {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.95);
+      background: rgba(0,0,0,0.4);
+      padding: 2px 6px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    /* Specimen backgrounds */
+    .sp-default       { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); }
+    .sp-graphite      { background: linear-gradient(135deg, #161616 0%, #2a2a2a 100%); }
+    .sp-sage          { background: linear-gradient(135deg, #161a17 0%, #2a3528 100%); }
+    .sp-oat           { background: linear-gradient(135deg, #1a1816 0%, #3a2d1f 100%); }
+    .sp-slate         { background: linear-gradient(135deg, #13171c 0%, #2a3540 100%); }
+    .sp-drift         { background: linear-gradient(135deg, #0a0e18 0%, #28324a 100%); }
+    .sp-carbon        { background: linear-gradient(135deg, #0e0e0e 0%, #2c2c2c 100%); }
+    .sp-plum          { background: linear-gradient(135deg, #14101c 0%, #3a2c5a 100%); }
+    .sp-mocha         { background: linear-gradient(135deg, #161210 0%, #3a2a1e 100%); }
+    .sp-sakura        { background: linear-gradient(135deg, #1a0f18 0%, #4a2538 100%); }
+    .sp-aurora        { background: linear-gradient(135deg, #050d1a 0%, #1a4a4a 50%, #4a2a5a 100%); }
+    .sp-midnight      { background: radial-gradient(circle at 50% 50%, #2a3070 0%, #0d1117 60%, #06080f 100%); }
+    .sp-matrix        { background: linear-gradient(135deg, #000800 0%, #003300 100%); }
+    .sp-forest        { background: linear-gradient(135deg, #0a1a0c 0%, #1f4a28 100%); }
+    .sp-synthwave     { background: linear-gradient(180deg, #1a0a2e 0%, #ff71ce 60%, #1a0218 100%); }
+    .sp-inferno       { background: linear-gradient(0deg, #ff6b35 0%, #28100a 50%, #1a0805 100%); }
+    .sp-galaxy        { background: radial-gradient(circle at 60% 40%, #4a3a8a 0%, #0a0a24 60%, #050514 100%); }
+    .sp-glacier       { background: linear-gradient(135deg, #0a1620 0%, #2a5575 50%, #7dd3fc 100%); }
+    .sp-vapor         { background: linear-gradient(135deg, #1a0a2e 0%, #ff6ec7 50%, #7dd3fc 100%); }
+    .sp-velvet        { background: radial-gradient(circle at 70% 30%, #c084fc 0%, #2a1145 50%, #14081a 100%); }
+    .sp-ocean         { background: linear-gradient(180deg, #051420 0%, #0a4a5a 70%, #06b6d4 100%); }
+    .sp-neon          { background: radial-gradient(circle at 30% 50%, #ec4899 0%, #131020 50%, #0a0814 100%); }
+    .sp-cosmos        { background: radial-gradient(circle at 50% 50%, #4f46e5 0%, #0a0a24 40%, #000208 100%); }
+    .sp-dino          { background: linear-gradient(180deg, #181818 0%, #232323 70%, #2d2d2d 100%); }
+    .sp-stardust      { background: radial-gradient(ellipse at 50% 50%, #4a5878 0%, #1a2240 50%, #050810 100%); }
+    .sp-constellation { background: radial-gradient(ellipse at 30% 30%, #4a6090 0%, #1a2438 60%, #06080f 100%); }
+    .sp-rainfall      { background: linear-gradient(180deg, #0a0f14 0%, #2a4858 60%, #67e8f9 100%); }
+    .sp-fireflies     { background: radial-gradient(circle at 70% 60%, #fde047 0%, #2a3520 40%, #0a0d0a 100%); }
+    .sp-lava          { background: linear-gradient(0deg, #ff6b00 0%, #5a1808 60%, #1a0808 100%); }
+    .sp-nebula        { background: radial-gradient(circle at 60% 40%, #d8b4fe 0%, #5a3a8a 30%, #0a0820 70%, #050214 100%); }
+    .sp-storm         { background: linear-gradient(180deg, #050a14 0%, #2a3550 50%, #404a68 100%); }
+    .sp-mountains     { background: linear-gradient(180deg, #1a2540 0%, #2a3a55 50%, #404a65 100%); }
+    .sp-lantern       { background: radial-gradient(circle at 50% 70%, #fbbf24 0%, #5a2a08 40%, #0e0606 100%); }
+    .sp-vortex        { background: radial-gradient(circle at 50% 50%, #a78bfa 0%, #2a1058 40%, #08041a 100%); }
+    .sp-origami       { background: linear-gradient(135deg, #0a0a14 0%, #2a3050 50%, #0a0a14 100%); }
+    .sp-halo          { background: radial-gradient(circle at 50% 30%, #fde68a 0%, #2a280a 40%, #0a0a14 100%); }
+    .sp-twilight      { background: linear-gradient(180deg, #0a0518 0%, #3a1a40 60%, #fcd34d 100%); }
+    .sp-petal         { background: linear-gradient(135deg, #0e0810 0%, #fbb6ce 70%, #4a2840 100%); }
+    .sp-supernova     { background: radial-gradient(circle at 50% 50%, #f59e0b, #5a3008 30%, #120a16 60%, #08040a); }
+    .sp-raindrop      { background: radial-gradient(circle at 40% 40%, #38bdf8 0%, #0e1620 40%, #080e14); }
+    .sp-northern      { background: linear-gradient(180deg, #020c08 0%, #4ade80 40%, #167139 60%, #081a10 100%); }
+    .sp-ember         { background: linear-gradient(135deg, #141008, #3a2810 50%, #e8a44c); }
+    .sp-fog           { background: linear-gradient(135deg, #101214, #2a2e35 50%, #4a5060); }
+    .sp-pine          { background: linear-gradient(135deg, #0a100c, #1a3020 50%, #2a4a30); }
+
+    /* ── PULL QUOTE / FEATURE ── */
+    .feature {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .feature blockquote {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      font-style: italic;
+    }
+
+    .feature blockquote span {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .feature-side {
+      align-self: start;
+      padding-top: 12px;
+    }
+
+    .feature-side h3 {
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .feature-side p {
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ── ESSAY GRID ── */
+    .essay {
+      padding: 64px 0 80px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .essay-head {
+      margin-bottom: 56px;
+    }
+
+    .essay-head h2 {
+      font-size: clamp(40px, 5vw, 60px);
+      font-weight: 400;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      max-width: 720px;
+    }
+
+    .essay-head h2 em { font-style: italic; }
+
+    .essay-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+
+    .essay-col {
+      border-top: 1px solid var(--rule);
+      padding-top: 20px;
+    }
+
+    .essay-col-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    .essay-col h4 {
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.4px;
+      font-style: italic;
+    }
+
+    .essay-col p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ── PRICE ── */
+    .price {
+      padding: 80px 0 100px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .price-head {
+      max-width: 640px;
+      margin-bottom: 56px;
+    }
+
+    .price-head h2 {
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 400;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .price-head h2 em { font-style: italic; }
+    .price-head p { font-size: 18px; color: var(--ink-soft); line-height: 1.5; }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .price-tier {
+      background: var(--bg);
+      padding: 36px 32px 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-tier.featured { background: var(--paper); }
+
+    .tier-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      color: var(--ink-faint);
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .tier-name {
+      font-size: 30px;
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: -0.5px;
+      margin-bottom: 24px;
+    }
+
+    .tier-price {
+      font-size: 56px;
+      font-weight: 400;
+      letter-spacing: -2.5px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .tier-period {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: 0.5px;
+      margin-bottom: 32px;
+    }
+
+    .tier-list {
+      list-style: none;
+      flex: 1;
+      margin-bottom: 32px;
+    }
+
+    .tier-list li {
+      padding: 10px 0;
+      border-top: 0.5px solid var(--rule);
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .tier-list li:last-child { border-bottom: 0.5px solid var(--rule); }
+
+    .tier-cta {
+      display: block;
+      text-align: center;
+      padding: 13px;
+      border-radius: 999px;
+      font-family: 'Fraunces', serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink);
+      transition: all 0.15s;
+    }
+    .tier-cta:hover { background: var(--ink); color: var(--bg); }
+    .tier-cta.primary {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .tier-cta.primary:hover { background: #2a2520; }
+
+    /* ── COLOPHON ── */
+    .colophon {
+      padding: 64px 0 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+    }
+
+    .col-block-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 14px;
+    }
+
+    .col-block p, .col-block a {
+      display: block;
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .col-block a:hover { color: var(--gold); }
+
+    .col-block.brand {
+      grid-column: 1;
+    }
+
+    .col-block.brand .mark {
+      font-size: 36px;
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .col-block.brand .tagline {
+      font-size: 14px;
+      color: var(--ink-soft);
+      max-width: 240px;
+    }
+
+    /* ── FOOTER RULE ── */
+    .end {
+      border-top: 1px solid var(--rule);
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero, .editors, .collection-head, .feature, .essay-cols, .price-grid, .colophon {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .specimens { grid-template-columns: repeat(3, 1fr); }
+      .hero { padding: 60px 0; }
+      .masthead-meta { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <!-- MASTHEAD -->
+    <header class="masthead">
+      <a href="#" class="masthead-brand"><em>Vellum</em></a>
+      <nav class="masthead-meta">
+        <a href="#collection">Themes</a>
+        <a href="#price">Price</a>
+        <a href="https://chrome.google.com/webstore" class="cta" target="_blank">Add to Chrome</a>
+      </nav>
+    </header>
+
+    <div class="issue">
+      <span>No. 001 · Vol. I</span>
+      <span>Spring 2026</span>
+      <span>Made in London</span>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-deck">An extension</div>
+        <h1>A small,<br>beautiful thing<br>for your <em>AI&nbsp;workspace</em>.</h1>
+      </div>
+      <div>
+        <div class="hero-byline">— On Claude &amp; ChatGPT</div>
+        <p class="hero-lede">Vellum is a collection of forty-four refined themes — colour, atmosphere, and the gentlest motion — for the hours you spend in conversation with machines.</p>
+        <div class="cta-row">
+          <a href="https://chrome.google.com/webstore" target="_blank" class="btn btn-primary">Add to Chrome — Free</a>
+          <a href="#collection" class="btn btn-ghost">View collection</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FROM THE EDITORS -->
+    <section class="editors">
+      <div class="section-tag">From the editors</div>
+      <div class="editors-text">
+        <p>The default looks of our AI tools were never designed for the way we actually use them — for hours at a time, late into the evening, with our attention nowhere else.</p>
+        <p>So we made Vellum. <em>Twelve themes free, forever. Thirty-two more for the people who want them.</em> Every one tuned by hand and tested in real conversations until it felt right.</p>
+        <p>It is a small thing. We hope it helps.</p>
+      </div>
+    </section>
+
+    <!-- COLLECTION -->
+    <section class="collection" id="collection">
+      <div class="collection-head">
+        <div>
+          <div class="section-tag" style="margin-bottom: 14px">The collection</div>
+          <h2><em>Forty-four</em><br>themes.</h2>
+        </div>
+        <p class="lede">From the gentlest paper-warm to falling cherry blossoms, swirling cosmic dust, and yes — even the offline dinosaur. Each theme reskins your entire workspace with subtle animation that never gets in the way.</p>
+      </div>
+
+      <div class="specimens">
+        <div class="specimen sp-default"><span class="specimen-label">Default<span class="specimen-num">001</span></span></div>
+        <div class="specimen sp-graphite"><span class="specimen-label">Graphite<span class="specimen-num">002</span></span></div>
+        <div class="specimen sp-sage"><span class="specimen-label">Sage<span class="specimen-num">003</span></span></div>
+        <div class="specimen sp-oat"><span class="specimen-label">Oat<span class="specimen-num">004</span></span></div>
+        <div class="specimen sp-slate"><span class="specimen-label">Slate<span class="specimen-num">005</span></span></div>
+        <div class="specimen sp-drift"><span class="specimen-label">Drift<span class="specimen-num">006</span></span></div>
+        <div class="specimen sp-carbon"><span class="specimen-label">Carbon<span class="specimen-num">007</span></span></div>
+        <div class="specimen sp-plum"><span class="specimen-label">Plum<span class="specimen-num">008</span></span></div>
+        <div class="specimen sp-mocha"><span class="specimen-label">Mocha<span class="specimen-num">009</span></span></div>
+        <div class="specimen sp-sakura"><span class="specimen-pro">Pro</span><span class="specimen-label">Sakura<span class="specimen-num">010</span></span></div>
+        <div class="specimen sp-aurora"><span class="specimen-pro">Pro</span><span class="specimen-label">Aurora<span class="specimen-num">011</span></span></div>
+        <div class="specimen sp-midnight"><span class="specimen-pro">Pro</span><span class="specimen-label">Midnight<span class="specimen-num">012</span></span></div>
+        <div class="specimen sp-matrix"><span class="specimen-pro">Pro</span><span class="specimen-label">Matrix<span class="specimen-num">013</span></span></div>
+        <div class="specimen sp-forest"><span class="specimen-pro">Pro</span><span class="specimen-label">Forest<span class="specimen-num">014</span></span></div>
+        <div class="specimen sp-synthwave"><span class="specimen-pro">Pro</span><span class="specimen-label">Synthwave<span class="specimen-num">015</span></span></div>
+        <div class="specimen sp-inferno"><span class="specimen-pro">Pro</span><span class="specimen-label">Inferno<span class="specimen-num">016</span></span></div>
+        <div class="specimen sp-galaxy"><span class="specimen-pro">Pro</span><span class="specimen-label">Galaxy<span class="specimen-num">017</span></span></div>
+        <div class="specimen sp-glacier"><span class="specimen-pro">Pro</span><span class="specimen-label">Glacier<span class="specimen-num">018</span></span></div>
+        <div class="specimen sp-vapor"><span class="specimen-pro">Pro</span><span class="specimen-label">Vapor<span class="specimen-num">019</span></span></div>
+        <div class="specimen sp-velvet"><span class="specimen-pro">Pro</span><span class="specimen-label">Velvet<span class="specimen-num">020</span></span></div>
+        <div class="specimen sp-ocean"><span class="specimen-pro">Pro</span><span class="specimen-label">Ocean<span class="specimen-num">021</span></span></div>
+        <div class="specimen sp-neon"><span class="specimen-pro">Pro</span><span class="specimen-label">Neon<span class="specimen-num">022</span></span></div>
+        <div class="specimen sp-cosmos"><span class="specimen-pro">Pro</span><span class="specimen-label">Cosmos<span class="specimen-num">023</span></span></div>
+        <div class="specimen sp-dino"><span class="specimen-pro">Pro</span><span class="specimen-label">Dino<span class="specimen-num">024</span></span></div>
+        <div class="specimen sp-stardust"><span class="specimen-pro">Pro</span><span class="specimen-label">Stardust<span class="specimen-num">025</span></span></div>
+        <div class="specimen sp-constellation"><span class="specimen-pro">Pro</span><span class="specimen-label">Constellation<span class="specimen-num">026</span></span></div>
+        <div class="specimen sp-rainfall"><span class="specimen-pro">Pro</span><span class="specimen-label">Rainfall<span class="specimen-num">027</span></span></div>
+        <div class="specimen sp-fireflies"><span class="specimen-pro">Pro</span><span class="specimen-label">Fireflies<span class="specimen-num">028</span></span></div>
+        <div class="specimen sp-lava"><span class="specimen-pro">Pro</span><span class="specimen-label">Lava<span class="specimen-num">029</span></span></div>
+        <div class="specimen sp-nebula"><span class="specimen-pro">Pro</span><span class="specimen-label">Nebula<span class="specimen-num">030</span></span></div>
+        <div class="specimen sp-storm"><span class="specimen-pro">Pro</span><span class="specimen-label">Storm<span class="specimen-num">031</span></span></div>
+        <div class="specimen sp-mountains"><span class="specimen-pro">Pro</span><span class="specimen-label">Mountains<span class="specimen-num">032</span></span></div>
+        <div class="specimen sp-lantern"><span class="specimen-pro">Pro</span><span class="specimen-label">Lantern<span class="specimen-num">033</span></span></div>
+        <div class="specimen sp-vortex"><span class="specimen-pro">Pro</span><span class="specimen-label">Vortex<span class="specimen-num">034</span></span></div>
+        <div class="specimen sp-origami"><span class="specimen-pro">Pro</span><span class="specimen-label">Origami<span class="specimen-num">035</span></span></div>
+        <div class="specimen sp-halo"><span class="specimen-pro">Pro</span><span class="specimen-label">Halo<span class="specimen-num">036</span></span></div>
+        <div class="specimen sp-twilight"><span class="specimen-pro">Pro</span><span class="specimen-label">Twilight<span class="specimen-num">037</span></span></div>
+        <div class="specimen sp-petal"><span class="specimen-pro">Pro</span><span class="specimen-label">Petal<span class="specimen-num">038</span></span></div>
+        <div class="specimen sp-supernova"><span class="specimen-pro">Pro</span><span class="specimen-label">Supernova<span class="specimen-num">039</span></span></div>
+        <div class="specimen sp-raindrop"><span class="specimen-pro">Pro</span><span class="specimen-label">Raindrop<span class="specimen-num">040</span></span></div>
+        <div class="specimen sp-northern"><span class="specimen-pro">Pro</span><span class="specimen-label">Northern<span class="specimen-num">041</span></span></div>
+        <div class="specimen sp-ember"><span class="specimen-label">Ember<span class="specimen-num">042</span></span></div>
+        <div class="specimen sp-fog"><span class="specimen-label">Fog<span class="specimen-num">043</span></span></div>
+        <div class="specimen sp-pine"><span class="specimen-label">Pine<span class="specimen-num">044</span></span></div>
+      </div>
+    </section>
+
+    <!-- PULL QUOTE -->
+    <section class="feature">
+      <blockquote>
+        "It's the small things — the warmth of <span>Oat</span>, the drift of <span>Sakura</span> — that make hours of work feel like time well spent."
+      </blockquote>
+      <div class="feature-side">
+        <h3>Atmosphere, not noise.</h3>
+        <p>Animations are slow, careful, and never the focus. They sit in the corners of your attention, the way a good room makes you feel without you noticing why. Less than 1% CPU on a typical day.</p>
+      </div>
+    </section>
+
+    <!-- ESSAY -->
+    <section class="essay">
+      <div class="essay-head">
+        <div class="section-tag" style="margin-bottom: 14px">Three short notes</div>
+        <h2>Built with <em>restraint</em>, where most extensions reach for spectacle.</h2>
+      </div>
+      <div class="essay-cols">
+        <div class="essay-col">
+          <div class="essay-col-num">N°. 01</div>
+          <h4>Privacy by absence.</h4>
+          <p>No tracking, no analytics, no telemetry. Vellum runs entirely in your browser. Your theme syncs through your Chrome account if you're signed in, and that's the extent of it.</p>
+        </div>
+        <div class="essay-col">
+          <div class="essay-col-num">N°. 02</div>
+          <h4>Both platforms, one home.</h4>
+          <p>Whether you live in Claude.ai or ChatGPT — or move between them daily — Vellum reskins both seamlessly. Your selection is remembered everywhere.</p>
+        </div>
+        <div class="essay-col">
+          <div class="essay-col-num">N°. 03</div>
+          <h4>Updates, included.</h4>
+          <p>New themes are added monthly. Pro members receive every release without any extra charge. We never paywall existing themes after release. Promise.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="price" id="price">
+      <div class="price-head">
+        <div class="section-tag" style="margin-bottom: 14px">Pricing</div>
+        <h2>Pay your <em>way</em>.</h2>
+        <p>Begin with Free, then upgrade if and when twelve themes aren't enough. Or own the whole collection forever, for the price of two coffees a year.</p>
+      </div>
+
+      <div class="price-grid">
+        <div class="price-tier">
+          <div class="tier-num">N°. 01</div>
+          <div class="tier-name">Free</div>
+          <div class="tier-price">$0</div>
+          <div class="tier-period">forever, no card</div>
+          <ul class="tier-list">
+            <li>Twelve refined themes</li>
+            <li>Both Claude &amp; ChatGPT</li>
+            <li>Auto-sync across devices</li>
+            <li>No tracking, no ads</li>
+          </ul>
+          <a href="https://chrome.google.com/webstore" target="_blank" class="tier-cta">Add to Chrome</a>
+        </div>
+
+        <div class="price-tier featured">
+          <div class="tier-num">N°. 02 · Most chosen</div>
+          <div class="tier-name">Pro Monthly</div>
+          <div class="tier-price">$2.99</div>
+          <div class="tier-period">per month, cancel any time</div>
+          <ul class="tier-list">
+            <li>All forty-four themes</li>
+            <li>Future themes, included</li>
+            <li>Custom colour picker</li>
+            <li>Priority support</li>
+            <li>Cancel any time</li>
+          </ul>
+          <button onclick="checkout('monthly')" class="tier-cta primary">Begin Pro</button>
+        </div>
+
+        <div class="price-tier">
+          <div class="tier-num">N°. 03 · Best value</div>
+          <div class="tier-name">Lifetime</div>
+          <div class="tier-price">$24.99</div>
+          <div class="tier-period">one payment, yours forever</div>
+          <ul class="tier-list">
+            <li>Everything in Pro Monthly</li>
+            <li>All future themes, included</li>
+            <li>Save 70% over time</li>
+            <li>Pay once, never again</li>
+            <li>14-day refund</li>
+          </ul>
+          <button onclick="checkout('lifetime')" class="tier-cta">Buy Lifetime</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOPHON -->
+    <section class="colophon">
+      <div class="col-block brand">
+        <span class="mark">Vellum</span>
+        <p class="tagline">A small, beautiful thing for your AI workspace.</p>
+      </div>
+      <div class="col-block">
+        <div class="col-block-tag">Read</div>
+        <a href="#collection">The collection</a>
+        <a href="#price">Pricing</a>
+        <a href="https://chrome.google.com/webstore" target="_blank">Install</a>
+      </div>
+      <div class="col-block">
+        <div class="col-block-tag">Reach</div>
+        <a href="mailto:hello@vellum.app">hello@vellum.app</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </section>
+
+    <div class="end">
+      <span>© 2026 Vellum</span>
+      <span>Set in Fraunces &amp; DM Mono</span>
+      <span>Made with care, in London</span>
+    </div>
+
+  </div>
+
+  <script>
+    function checkout(plan) {
+      const urls = {
+        monthly:  'https://yourstore.lemonsqueezy.com/checkout/buy/MONTHLY_ID',
+        lifetime: 'https://yourstore.lemonsqueezy.com/checkout/buy/LIFETIME_ID'
+      };
+      window.location.href = urls[plan];
+    }
+  </script>
+</body>
+</html>
